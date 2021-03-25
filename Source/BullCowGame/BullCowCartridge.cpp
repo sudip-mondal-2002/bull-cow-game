@@ -17,7 +17,7 @@ void UBullCowCartridge::OnInput(const FString &Input) // When the player hits en
     }
     else
     {
-        ProcessGuess(Input, Lives);
+        ProcessGuess(Input);
     }
 }
 
@@ -39,7 +39,7 @@ void UBullCowCartridge::EndGame()
     PrintLine(TEXT("\nPress Enter to play again..."));
 }
 
-void UBullCowCartridge::ProcessGuess(FString Guess, int32 Counter)
+void UBullCowCartridge::ProcessGuess(const FString& Guess)
 {
     if (Guess == HiddenWord)
     {
@@ -70,7 +70,7 @@ void UBullCowCartridge::ProcessGuess(FString Guess, int32 Counter)
     }
 }
 
-bool UBullCowCartridge::IsIsogram(FString Word) const
+bool UBullCowCartridge::IsIsogram(const FString& Word) const
 {
     for (int32 Index = 0; Index < Word.Len(); Index++)
     {
@@ -86,14 +86,14 @@ bool UBullCowCartridge::IsIsogram(FString Word) const
     return true;
 }
 
-TArray<FString> UBullCowCartridge::GetValidWords(TArray<FString> Words) const
+TArray<FString> UBullCowCartridge::GetValidWords(const TArray<FString>& WordList) const
 {
     TArray<FString> ValidWords;
-    for (int32 Index = 0; Index < Words.Num(); Index++)
+    for (FString Word : WordList)
     {
-        if (Words[Index].Len() >= 4 && Words[Index].Len() <= 8 && IsIsogram(Words[Index]))
+        if (Word.Len() >= 4 && Word.Len() <= 8 && IsIsogram(Word))
         {
-            ValidWords.Emplace(Words[Index]);
+            ValidWords.Emplace(Word);
         }
     }
     return ValidWords;
