@@ -74,14 +74,27 @@ bool UBullCowCartridge::IsIsogram(FString Word) const
 {
     for (int32 Index = 0; Index < Word.Len(); Index++)
     {
-        for (int32 Comparison = Index+1; Comparison < Word.Len(); Comparison++)
+        for (int32 Comparison = Index + 1; Comparison < Word.Len(); Comparison++)
         {
-            if (Word[Index] == Word[Comparison]){
+            if (Word[Index] == Word[Comparison])
+            {
                 return false;
             }
         }
-        
     }
-    
+
     return true;
+}
+
+TArray<FString> UBullCowCartridge::GetValidWords(TArray<FString> Words) const
+{
+    TArray<FString> ValidWords;
+    for (int32 Index = 0; Index < Words.Num(); Index++)
+    {
+        if (Words[Index].Len() >= 4 && Words[Index].Len() <= 8 && IsIsogram(Words[Index]))
+        {
+            ValidWords.Emplace(Words[Index]);
+        }
+    }
+    return ValidWords;
 }
