@@ -20,7 +20,7 @@ void UBullCowCartridge::OnInput(const FString& Input) // When the player hits en
         ProcessGuess(Input);
     }
 }
-
+ 
 void UBullCowCartridge::InitGame()
 {   
     TArray<FString> ValidWords=GetValidWords(Words);
