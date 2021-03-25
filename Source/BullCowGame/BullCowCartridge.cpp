@@ -8,7 +8,7 @@ void UBullCowCartridge::BeginPlay() // When the game starts
     InitGame();
 }
 
-void UBullCowCartridge::OnInput(const FString &Input) // When the player hits enter
+void UBullCowCartridge::OnInput(const FString& Input) // When the player hits enter
 {
     if (bGameOver)
     {
@@ -22,8 +22,10 @@ void UBullCowCartridge::OnInput(const FString &Input) // When the player hits en
 }
 
 void UBullCowCartridge::InitGame()
-{
-    HiddenWord = TEXT("cake");
+{   
+    TArray<FString> ValidWords=GetValidWords(Words);
+    const int32 RandomIndex = FMath::RandRange(0,ValidWords.Num()-1);
+    HiddenWord = ValidWords[RandomIndex];
     Lives = HiddenWord.Len();
     bGameOver = false;
     PrintLine(TEXT("Welcome to my Bull-Cow Game"));
