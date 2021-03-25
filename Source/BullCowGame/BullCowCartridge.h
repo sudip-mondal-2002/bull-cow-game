@@ -19,6 +19,7 @@ public:
 	void ProcessGuess(const FString& Guess);
 	bool IsIsogram(const FString& Word) const;
 	TArray<FString> GetValidWords (const TArray<FString>& Words) const;
+	void GetBullCows (const FString& Guess, int32& Bull, int32& Cow) const;
 	// Your declarations go below!
 private:
 	FString HiddenWord;
