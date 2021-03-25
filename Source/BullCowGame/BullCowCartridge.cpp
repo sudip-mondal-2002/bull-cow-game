@@ -1,14 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+
 #include "BullCowCartridge.h"
 #include "HiddenWords.h"
 
-void UBullCowCartridge::BeginPlay() // When the game starts
+void UBullCowCartridge::BeginPlay() 
 {
     Super::BeginPlay();
     InitGame();
 }
 
-void UBullCowCartridge::OnInput(const FString &Input) // When the player hits enter
+void UBullCowCartridge::OnInput(const FString &Input) 
 {
     if (bGameOver)
     {
